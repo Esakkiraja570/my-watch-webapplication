@@ -10,6 +10,7 @@ import img6 from "./Shop cards/a9ff3b_9ef56661e3354b10821ac0d339bef2a4.avif";
 import img7 from "./Shop cards/88888888d.avif";
 import img8 from "./Shop cards/777777779.avif";
 import img9 from "./Shop cards/66666666.avif";
+import "./Shop.css";
 
 const Shop = () => {
   const [showCart, setShowCart] = useState(false);
@@ -48,17 +49,15 @@ const Shop = () => {
     <div className="shopcard">
       <h4>Shop</h4>
 
-      {}
       <div className="card-containers">
         {products.map((product) => (
           <div key={product.id} className="card">
             <img src={product.img} alt={product.name} />
-            <h4  id="content">{product.name}</h4>
-            <p  id="content">₹{product.price}</p>
+            <h4>{product.name}</h4>
+            <p>₹{product.price}</p>
             <button
               className="view-btn"
               onClick={() => handleProductClick(product)}
-              style={{ fontSize: "13px",backgroundColor:"gold",marginBottom:"20px" }}
             >
               View Details
             </button>
@@ -68,72 +67,18 @@ const Shop = () => {
 
       {}
       {selectedProduct && (
-        <div
-          style={{
-            display:"flex",
-            position: "fixed",
-            top: "0",
-            left: "0",
-            width:"100%",
-            height: "100%",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 1,
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: "white",
-              borderRadius: "15px",
-              padding: "60px",
-              width: "850px",
-              textAlign: "center",
-              boxShadow: "0 0 10px rgba(0,0,0,0.3)",
-            }}
-          >
-            <div>
+        <div className="modal-overlay">
+          <div className="modal-content">
             <img
               src={selectedProduct.img}
-               alt={selectedProduct.name}
-              width="200"
-              style={{ borderRadius: "10px",display:"inline-block",width:"200px" }}
-            
-            /></div>
-            <div>
-             
-              </div>
+              alt={selectedProduct.name}
+            />
             <h3>{selectedProduct.name}</h3>
             <p>{selectedProduct.desc}</p>
             <h4>₹{selectedProduct.price}</h4>
-
-            <div style={{ marginTop: "15px" }}>
-              <button
-                onClick={handleAddToCart}
-                style={{
-                  backgroundColor: "lightgreen",
-                  border: "none",
-                  padding: "10px 20px",
-                  borderRadius: "10px",
-                  marginRight: "10px",
-                  cursor: "pointer",
-                }}
-              >
-                Add to Cart
-              </button>
-              <button
-                onClick={() => setSelectedProduct(null)}
-                style={{
-                  backgroundColor: "lightcoral",
-                  border: "none",
-                  padding: "10px 20px",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                }}
-              >
-                Cancel
-              </button>
+            <div className="modal-buttons">
+              <button onClick={handleAddToCart}>Add to Cart</button>
+              <button onClick={() => setSelectedProduct(null)}>Cancel</button>
             </div>
           </div>
         </div>
@@ -141,78 +86,36 @@ const Shop = () => {
 
       {}
       {showCart && (
-        <div
-          style={{
-            position: "fixed",
-            top: "0",
-            right: "0",
-            width: "350px",
-            height: "100%",
-            backgroundColor: "#f9f9f9",
-            boxShadow: "-2px 0 10px rgba(0,0,0,0.2)",
-            padding: "20px",
-            overflowY: "auto",
-          }}
-        >
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="cart-sidebar">
+          <div className="cart-header">
             <h2>Your Cart</h2>
-            <button
-              onClick={() => setShowCart(false)}
-              style={{
-                backgroundColor: "lightcoral",
-                border: "none",
-                borderRadius: "8px",
-                padding: "5px 10px",
-                cursor: "pointer",
-              }}
-            >
-              ✖
-            </button>
+            <button className="cart-close" onClick={() => setShowCart(false)}>✖</button>
           </div>
-
           <hr />
-
           {cart.length === 0 ? (
             <p>No items in cart.</p>
           ) : (
             cart.map((item) => (
-              <div
-                key={item.id}
-                style={{
-                  backgroundColor: "#444",
-                  color: "white",
-                  borderRadius: "10px",
-                  padding: "10px",
-                  marginBottom: "15px",
-                }}
-              >
+              <div key={item.id} className="cart-item">
                 <img src={item.img} alt={item.name} width="100" />
                 <h3>{item.name}</h3>
                 <p>Price: ₹{item.price}</p>
                 <p>Qty: {item.quantity}</p>
                 <p>Total: ₹{item.price * item.quantity}</p>
-                <button onClick={() => decreaseQty(item.id)}>-</button>
-                <button onClick={() => increaseQty(item.id)}>+</button>
-                <button onClick={() => removeFromCart(item.id)}>🗑</button>
+                <button className="view-detail-btn" onClick={() => handleProductClick(item)}>View Details</button>
+                <div className="cart-controls">
+                  <button onClick={() => decreaseQty(item.id)}>-</button>
+                  <button onClick={() => increaseQty(item.id)}>+</button>
+                  <button onClick={() => removeFromCart(item.id)}>🗑</button>
+                </div>
               </div>
             ))
           )}
-
           {cart.length > 0 && (
             <>
               <hr />
-              <h5>Grand Total: ₹{totalPrice}</h5>
-              <button
-                onClick={() => navigate("/cart")}
-                style={{
-                  backgroundColor: "#4CAF50",
-                  color: "white",
-                  padding: "10px 20px",
-                  border: "none",
-                  borderRadius: "20px",
-                  cursor: "pointer",
-                }}
-              >
+              <div className="cart-total">Grand Total: ₹{totalPrice}</div>
+              <button className="checkout-btn" onClick={() => navigate("/cart")}>
                 Go to Cart
               </button>
             </>

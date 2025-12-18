@@ -4,6 +4,7 @@ import Firstslide from './84770f_1406897499474080bb0a986c3a2eba44~mv2.avif'
 import secoundslide from './img2avif.avif'
 import thiredslide from './84770f_b22b78850e964f75859b2954a48887dc~mv2.avif'
 import {  Navigate, useNavigate } from 'react-router-dom';
+import './Sliderbar.css';
 const Sliderbar = () => {
   const  navigate= useNavigate();
   return (

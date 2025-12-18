@@ -3,10 +3,10 @@ import './Pages.css'
 import Routing from './Routing'
 const Page = () => {
   return (
-    <>
+    <div className='page'>
     <div className='pagehead'>
     <h3>ROCHETTE</h3>
-    <p>ESCLUSIVE SWISS MADE WATHCHES</p>
+    <p>EXCLUSIVE SWISS MADE WATCHES</p>
     </div>
     <div>
          <Routing/>     
@@ -26,7 +26,7 @@ const Page = () => {
 </svg><i class="bi bi-twitter"></i></div>
     </div>
     </div>
-    </>
+    </div>
   )
 }
 

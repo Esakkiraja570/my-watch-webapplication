@@ -7,10 +7,14 @@ import "./Cards.css"
 
   const Cards = () => {
   const products = [
-    { id: 1,imgages:img1 ,name: "Black jet", price: "$10" },
-    { id: 2,imgages:img2, name: "Xtreme sport", price: "$20" },
-    { id: 3,imgages:img3, name: "Gen z", price: "$30" },
-    { id: 4,imgages:img4, name: "Apollo", price: "$50" },
+    { id: 1,imgages:img1 ,name: "Black Jet", price: "$299" },
+    { id: 2,imgages:img2, name: "Xtreme Sport", price: "$399" },
+    { id: 3,imgages:img3, name: "Gen Z", price: "$249" },
+    { id: 4,imgages:img4, name: "Apollo", price: "$599" },
+    { id: 5,imgages:img1 ,name: "Classic Gold", price: "$699" },
+    { id: 6,imgages:img2, name: "Diver Pro", price: "$499" },
+    { id: 7,imgages:img3, name: "Minimalist", price: "$349" },
+    { id: 8,imgages:img4, name: "Luxury Edition", price: "$999" },
   ];
 
   return (
@@ -20,7 +24,7 @@ import "./Cards.css"
           <img src={product.imgages}/>
           <h4 id="content">{product.name}</h4>
           <p id="content">{product.price}</p>
-          <button className="view-btn" style={{color:'red',backgroundColor:'white',border:'1px solid'}}>View Details</button>
+          <button className="view-btn">View Details</button>
         </div>
       ))}
     </div>

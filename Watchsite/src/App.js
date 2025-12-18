@@ -4,8 +4,6 @@ import Page from '../src/Routing/Page'
 import { CartProvider } from './Routing/Cartcontext';
 import { Route, Routes } from 'react-router-dom';
 
-
-
 function App() {
   return (
     <div>
